@@ -82,9 +82,9 @@ final class HttpRequest implements Runnable {
     private void processRequest() throws Exception {
         // Initialize stream variables to reference the socket's input and
         // output streams. These can be retrieved from the object's socket,
-        // itself. The output stream will require a type cast.
+        // itself.
         InputStream iStream = socket.getInputStream();
-        DataOutputStream oStream = (DataOutputStream) socket.getOutputStream();
+        OutputStream oStream = socket.getOutputStream();
 
         // The buffered reader can't read the input stream directly. It needs a
         // filter to convert the bytes to characters.
