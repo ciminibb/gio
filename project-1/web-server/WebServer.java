@@ -32,7 +32,16 @@ public final class WebServer {
             // some client. There is now a pipe ready for transport.
             Socket connectionSocket = welcomeSocket.accept();
 
-            // NEW THREADS AND STREAMS? SYNTHESIZE BOTH INSTRUCTIONS!
+            // Create an object of the HttpRequest class, passing it a reference
+            // to our connection socket (our side of the pipe). Reaching this
+            // line means a request was received.
+            HttpRequest request = new HttpRequest(connectionSocket);
+
+            // Open a new thread to process the request that was just received.
+            // For that reason, we supply a reference to the request as an
+            // argument to the thread's constructor.
+            Thread thread = new Thread(request);
+            thread.start(); // Start the thread.
         }
     }
 }
