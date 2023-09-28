@@ -100,6 +100,15 @@ final class HttpRequest implements Runnable {
         System.out.println();            // Output a blank line.
         System.out.println(requestLine); // Output the request line.
 
+        // Display header lines in a loop which terminates when an empty line is
+        // read. It is okay that the headerLine variable is overwritten in each
+        // iteration, we don't need those lines other than to display.
+        System.out.println("REQUEST");
+        String headerLine = null;
+        while ((headerLine = bReader.readLine()).length() != 0) {
+            System.out.println(headerLine);
+        }
+
         // Create an object of the StringTokenizer class with which to extract
         // the filename from the HTTP request line (we are beginning to work on
         // a response now). For the purposes of this project, we're ignoring
@@ -174,15 +183,6 @@ final class HttpRequest implements Runnable {
         else {
             oStream.writeBytes(entityBody); // Send error message if file
                                             // doesn't exist.
-        }
-
-        // Display header lines in a loop which terminates when an empty line is
-        // read. It is okay that the headerLine variable is overwritten in each
-        // iteration, we don't need those lines other than to display.
-        System.out.println("REQUEST");
-        String headerLine = null;
-        while ((headerLine = bReader.readLine()).length() != 0) {
-            System.out.println(headerLine);
         }
 
         // Display HTTP response.
