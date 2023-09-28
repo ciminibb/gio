@@ -153,7 +153,7 @@ final class HttpRequest implements Runnable {
             // issue. It should return a 200 OK status.
             statusLine = "200 OK";
             contentTypeLine = "Content-type: " +
-                URLConnection.guessContentTypeFromName(filename) +
+                contentType(filename) +
                 crlf; // Concatenate text, content type (possible bug), and CRLF
                       // into single string.
         }
